@@ -306,7 +306,7 @@ class AclShell extends Shell
     {
         extract($this->_dataVars());
 
-        $alias = $this->Acl->{$class}->alias();
+        $alias = $this->Acl->{$class}->getAlias();
         if (isset($this->args[1])) {
             $identity = $this->parseIdentifier($this->args[1]);
 
@@ -338,7 +338,7 @@ class AclShell extends Shell
         $stack = [];
         $last = null;
 
-        $rows = $nodes->hydrate(false)->toArray();
+        $rows = $nodes->enableHydration(false)->toArray();
         foreach ($rows as $n) {
             $stack[] = $n;
             if (!empty($last)) {
